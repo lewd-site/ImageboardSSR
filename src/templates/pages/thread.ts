@@ -3,6 +3,7 @@ import Board from '../../models/board';
 import Post from '../../models/post';
 import Thread from '../../models/thread';
 import layout from '../layout';
+import postFiles from '../post-files';
 
 interface ThreadPageProps {
   readonly board: Board;
@@ -20,25 +21,27 @@ export function threadPage({ board, thread, posts }: ThreadPageProps) {
       <div class="thread-page">
         ${posts.map(
           (post) => html`<section class="thread-page__post post">
-          <div class="post__header">
-            <span class="post__author">
-              <span class="post__name">${post.name || ''}</span
-              <span class="post__tripcode">${post.tripcode || ''}</span
-            </span>
+            <div class="post__header">
+              <span class="post__author">
+                <span class="post__name">${post.name || ''}</span>
+                <span class="post__tripcode">${post.tripcode || ''}</span>
+              </span>
 
-            <time class="post__date" datetime="${post.createdAt.toISOString()}">
-              ${post.createdAt.toLocaleDateString()}
-              ${post.createdAt.toLocaleTimeString()}
-            </time>
+              <time class="post__date" datetime="${post.createdAt.toISOString()}">
+                ${post.createdAt.toLocaleDateString()} ${post.createdAt.toLocaleTimeString()}
+              </time>
 
-            <span class="post__id">${post.id}</span>
-          </div>
+              <span class="post__id">${post.id}</span>
+            </div>
 
-          <div class="post__content">${post.message}</div>
+            <div class="post__content">
+              ${postFiles({ className: 'post__files', files: post.files })}
 
-          <div class="post__footer">
-          </div>
-        </section>`
+              <div class="post__message">${post.message}</div>
+            </div>
+
+            <div class="post__footer"></div>
+          </section>`
         )}
       </div>`,
   });

@@ -2,6 +2,7 @@ import { html } from '@popeindustries/lit-html-server';
 import Board from '../../models/board';
 import Thread from '../../models/thread';
 import layout from '../layout';
+import postFiles from '../post-files';
 
 interface BoardPageProps {
   readonly board: Board;
@@ -24,13 +25,12 @@ export function boardPage({ board, threads }: BoardPageProps) {
               <span class="thread__subject">${thread.subject || ''}</span>
 
               <span class="thread__author">
-                <span class="thread__name">${thread.name || ''}</span
-                <span class="thread__tripcode">${thread.tripcode || ''}</span
+                <span class="thread__name">${thread.name || ''}</span>
+                <span class="thread__tripcode">${thread.tripcode || ''}</span>
               </span>
 
               <time class="thread__date" datetime="${thread.createdAt.toISOString()}">
-                ${thread.createdAt.toLocaleDateString()}
-                ${thread.createdAt.toLocaleTimeString()}
+                ${thread.createdAt.toLocaleDateString()} ${thread.createdAt.toLocaleTimeString()}
               </time>
 
               <span class="thread__id">${thread.id}</span>
@@ -38,7 +38,11 @@ export function boardPage({ board, threads }: BoardPageProps) {
               <a class="thread__reply" href="/${thread.slug}/res/${thread.id}">Перейти в тред</a>
             </div>
 
-            <div class="thread__content">${thread.message}</div>
+            <div class="thread__content">
+              ${postFiles({ className: 'thread__files', files: thread.files })}
+
+              <div class="thread__message">${thread.message}</div>
+            </div>
 
             <div class="thread__footer">
               <span class="thread__replies">Ответов: ${thread.postCount}</span>

@@ -7,6 +7,7 @@ import serve from 'koa-static';
 import { BoardController } from './controllers/board-controller';
 import ApiClient from './api/client';
 import PostController from './controllers/post-controller';
+import config from './config';
 
 const MS_IN_WEEK = 1000 * 60 * 60 * 24 * 7;
 
@@ -23,7 +24,21 @@ export function createApp() {
   router.get('/:slug/res/:threadId', postController.index);
 
   const app = new Koa();
-  app.use(helmet.contentSecurityPolicy());
+  app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ['self'],
+        baseUri: ['self'],
+        fontSrc: ['self', 'https:', 'data:'],
+        formAction: ['self'],
+        frameAncestors: ['self'],
+        imgSrc: ['self', config.api.host, 'data:'],
+        objectSrc: ['none'],
+        scriptSrc: ['self'],
+        styleSrc: ['self', 'https:', 'unsafe-inline'],
+      },
+    })
+  );
   app.use(helmet.referrerPolicy());
   app.use(helmet.noSniff());
   app.use(helmet.dnsPrefetchControl());
