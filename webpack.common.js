@@ -29,6 +29,8 @@ module.exports = {
     'koa-conditional-get': 'commonjs koa-conditional-get',
     'koa-etag': 'commonjs koa-etag',
     'koa-static': 'commonjs koa-static',
+    '@popeindustries/lit-html-server': 'commonjs @popeindustries/lit-html-server',
+    'node-fetch-commonjs': 'commonjs node-fetch-commonjs',
   },
   plugins: [new webpack.ProgressPlugin()],
 };
