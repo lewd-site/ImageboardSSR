@@ -1,4 +1,5 @@
 import { html, TemplateResult } from '@popeindustries/lit-html-server';
+import config from '../config';
 
 interface LayoutProps {
   readonly title: string;
@@ -15,8 +16,10 @@ export function layout(props: LayoutProps) {
 
         <title>${props.title}</title>
 
-        <link rel="stylesheet" href="/styles/bundle.css" />
-        <script type="module" src="/scripts/bundle.js" defer></script>
+        ${process.env.NODE_ENV === 'development'
+          ? html`<script src="${config.dev.host}/assets/bundle.js"></script>`
+          : html`<link rel="stylesheet" href="/styles/bundle.css" />
+              <script type="module" src="/scripts/bundle.js" defer></script>`}
       </head>
 
       <body class="layout">

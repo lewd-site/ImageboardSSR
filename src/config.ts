@@ -7,6 +7,9 @@ export const config = {
   api: {
     host: env.API_HOST || 'http://127.0.0.1:3000',
   },
+  dev: {
+    host: env.DEV_HOST || 'http://127.0.0.1:9000',
+  },
   http: {
     port: +(env.HTTP_PORT || 3001),
   },
