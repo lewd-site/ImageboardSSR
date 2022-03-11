@@ -3,6 +3,7 @@ import Board from '../../models/board';
 import Post from '../../models/post';
 import Thread from '../../models/thread';
 import layout from '../layout';
+import markup from '../markup';
 import postFiles from '../post-files';
 
 interface ThreadPageProps {
@@ -20,7 +21,7 @@ export function threadPage({ board, thread, posts }: ThreadPageProps) {
 
       <div class="thread-page">
         ${posts.map(
-          (post) => html`<section class="thread-page__post post">
+          (post) => html`<section class="thread-page__post post" id="${`post_${post.id}`}">
             <div class="post__header">
               <span class="post__author">
                 <span class="post__name">${post.name || ''}</span>
@@ -37,7 +38,7 @@ export function threadPage({ board, thread, posts }: ThreadPageProps) {
             <div class="post__content">
               ${postFiles({ className: 'post__files', files: post.files })}
 
-              <div class="post__message">${post.message}</div>
+              <div class="post__message">${markup(post.parsedMessage)}</div>
             </div>
 
             <div class="post__footer"></div>

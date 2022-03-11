@@ -2,6 +2,7 @@ import { html } from '@popeindustries/lit-html-server';
 import Board from '../../models/board';
 import Thread from '../../models/thread';
 import layout from '../layout';
+import markup from '../markup';
 import postFiles from '../post-files';
 
 interface BoardPageProps {
@@ -20,7 +21,7 @@ export function boardPage({ board, threads }: BoardPageProps) {
         <h2 class="board-page__title">Список тредов</h2>
 
         ${threads.map(
-          (thread) => html`<section class="board-page__thread thread">
+          (thread) => html`<section class="board-page__thread thread" id="${`post_${thread.id}`}">
             <div class="thread__header">
               <span class="thread__subject">${thread.subject || ''}</span>
 
@@ -41,7 +42,7 @@ export function boardPage({ board, threads }: BoardPageProps) {
             <div class="thread__content">
               ${postFiles({ className: 'thread__files', files: thread.files })}
 
-              <div class="thread__message">${thread.message}</div>
+              <div class="thread__message">${markup(thread.parsedMessage)}</div>
             </div>
 
             <div class="thread__footer">
