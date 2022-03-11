@@ -24,6 +24,7 @@ module.exports = {
   externals: {
     dotenv: 'commonjs dotenv',
     koa: 'commonjs koa',
+    '@koa/cors': 'commonjs @koa/cors',
     'koa-router': 'commonjs koa-router',
     'koa-helmet': 'commonjs koa-helmet',
     'koa-conditional-get': 'commonjs koa-conditional-get',
