@@ -7,16 +7,20 @@ import markup from '../markup';
 import postFiles from '../post-files';
 
 interface ThreadPageProps {
+  readonly path: string;
+  readonly boards: Board[];
   readonly board: Board;
   readonly thread: Thread;
   readonly posts: Post[];
 }
 
-export function threadPage({ board, thread, posts }: ThreadPageProps) {
+export function threadPage({ path, boards, board, thread, posts }: ThreadPageProps) {
   const title = `/${board.slug}/ — ${thread.subject ?? `Тред #${thread.id}`}`;
 
   return layout({
+    path,
     title,
+    boards,
     content: html`<h1 class="layout__title">${title}</h1>
 
       <div class="thread-page">

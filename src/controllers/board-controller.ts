@@ -11,15 +11,23 @@ export class BoardController {
     const boards = await this.apiClient.browseBoards();
 
     ctx.set('Content-Type', 'text/html');
-    ctx.body = renderToStream(indexPage({ boards }));
+    ctx.body = renderToStream(indexPage({ path: ctx.path, boards }));
   };
 
   public show = async (ctx: Koa.Context) => {
     const slug = String(ctx.params.slug || '').trim();
-    const board = await this.apiClient.readBoard(slug);
-    const threads = await this.apiClient.browseThreads(slug);
+
+    const [boards, threads] = await Promise.all([
+      await this.apiClient.browseBoards(),
+      await this.apiClient.browseThreads(slug),
+    ]);
+
+    const board = boards.find((board) => board.slug === slug);
+    if (typeof board === 'undefined') {
+      throw new Error();
+    }
 
     ctx.set('Content-Type', 'text/html');
-    ctx.body = renderToStream(boardPage({ board, threads }));
+    ctx.body = renderToStream(boardPage({ path: ctx.path, boards, board, threads }));
   };
 }

@@ -6,15 +6,19 @@ import markup from '../markup';
 import postFiles from '../post-files';
 
 interface BoardPageProps {
+  readonly path: string;
+  readonly boards: Board[];
   readonly board: Board;
   readonly threads: Thread[];
 }
 
-export function boardPage({ board, threads }: BoardPageProps) {
+export function boardPage({ path, boards, board, threads }: BoardPageProps) {
   const title = `/${board.slug}/ — ${board.title}`;
 
   return layout({
+    path,
     title,
+    boards,
     content: html`<h1 class="layout__title">${title}</h1>
 
       <div class="board-page">

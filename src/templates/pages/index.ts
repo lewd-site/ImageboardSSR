@@ -4,14 +4,17 @@ import Board from '../../models/board';
 import layout from '../layout';
 
 interface IndexPageProps {
+  readonly path: string;
   readonly boards: Board[];
 }
 
-export function indexPage({ boards }: IndexPageProps) {
+export function indexPage({ path, boards }: IndexPageProps) {
   const title = config.site.title;
 
   return layout({
+    path,
     title,
+    boards,
     content: html`<h1 class="layout__title">${title}</h1>
 
       <div class="index-page">

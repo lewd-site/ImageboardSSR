@@ -9,12 +9,20 @@ export class PostController {
   public index = async (ctx: Koa.Context) => {
     const slug = String(ctx.params.slug || '').trim();
     const threadId = +(ctx.params.threadId || 0);
-    const board = await this.apiClient.readBoard(slug);
-    const thread = await this.apiClient.readThread(slug, threadId);
-    const posts = await this.apiClient.browsePosts(slug, threadId);
+
+    const [boards, thread, posts] = await Promise.all([
+      await this.apiClient.browseBoards(),
+      await this.apiClient.readThread(slug, threadId),
+      await this.apiClient.browsePosts(slug, threadId),
+    ]);
+
+    const board = boards.find((board) => board.slug === slug);
+    if (typeof board === 'undefined') {
+      throw new Error();
+    }
 
     ctx.set('Content-Type', 'text/html');
-    ctx.body = renderToStream(threadPage({ board, thread, posts }));
+    ctx.body = renderToStream(threadPage({ path: ctx.path, boards, board, thread, posts }));
   };
 }
 

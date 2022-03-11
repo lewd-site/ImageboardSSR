@@ -1,12 +1,16 @@
 import { html, TemplateResult } from '@popeindustries/lit-html-server';
 import config from '../config';
+import Board from '../models/board';
+import sidebar from './sidebar';
 
 interface LayoutProps {
+  readonly path: string;
   readonly title: string;
+  readonly boards: Board[];
   readonly content?: TemplateResult | string;
 }
 
-export function layout(props: LayoutProps) {
+export function layout({ title, path, boards, content }: LayoutProps) {
   return html`<!DOCTYPE html>
     <html lang="ru">
       <head>
@@ -14,7 +18,7 @@ export function layout(props: LayoutProps) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>${props.title}</title>
+        <title>${title}</title>
 
         ${process.env.NODE_ENV === 'development'
           ? html`<script src="${config.dev.host}/assets/bundle.js"></script>`
@@ -23,7 +27,9 @@ export function layout(props: LayoutProps) {
       </head>
 
       <body class="layout">
-        <main class="layout__content">${props.content}</main>
+        ${sidebar({ className: 'layout__sidebar', path, boards })}
+
+        <main class="layout__content">${content}</main>
       </body>
     </html>`;
 }
