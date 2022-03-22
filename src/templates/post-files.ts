@@ -68,9 +68,9 @@ export function postFiles(props: PostFilesProps) {
       const fallbackExtension = TRANSPARENT.includes(file.extension) ? 'png' : 'jpg';
       const fallbackMimeType = TRANSPARENT.includes(file.extension) ? 'image/png' : 'image/jpeg';
 
-      const originalUrl = `${config.api.host}/original/${file.hash}.${file.extension}`;
-      const thumbnailUrl = `${config.api.host}/thumbnails/${file.hash}.webp`;
-      const thumbnailFallbackUrl = `${config.api.host}/thumbnails/${file.hash}.${fallbackExtension}`;
+      const originalUrl = `${config.content.host}/original/${file.hash}.${file.extension}`;
+      const thumbnailUrl = `${config.content.host}/thumbnails/${file.hash}.webp`;
+      const thumbnailFallbackUrl = `${config.content.host}/thumbnails/${file.hash}.${fallbackExtension}`;
 
       const width = file.width || DEFAULT_THUMBNAIL_SIZE;
       const height = file.height || DEFAULT_THUMBNAIL_SIZE;
