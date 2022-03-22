@@ -29,15 +29,15 @@ export function createApp() {
     app.use(
       helmet.contentSecurityPolicy({
         directives: {
-          defaultSrc: ['self'],
-          baseUri: ['self'],
-          fontSrc: ['self', 'https:', 'data:'],
-          formAction: ['self'],
-          frameAncestors: ['self'],
-          imgSrc: ['self', 'data:'],
-          objectSrc: ['none'],
-          scriptSrc: ['self'],
-          styleSrc: ['self'],
+          defaultSrc: ["'self'"],
+          baseUri: ["'self'"],
+          fontSrc: ["'self'", 'https:', 'data:'],
+          formAction: ["'self'"],
+          frameAncestors: ["'self'"],
+          imgSrc: ["'self'", 'data:'],
+          objectSrc: ["'none'"],
+          scriptSrc: ["'self'"],
+          styleSrc: ["'self'"],
         },
       })
     );

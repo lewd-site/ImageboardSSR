@@ -22,8 +22,8 @@ export function layout({ title, path, boards, content }: LayoutProps) {
 
         ${process.env.NODE_ENV === 'development'
           ? html`<script src="${config.dev.host}/assets/bundle.js"></script>`
-          : html`<link rel="stylesheet" href="/styles/bundle.css" />
-              <script type="module" src="/scripts/bundle.js" defer></script>`}
+          : html`<link rel="stylesheet" href="/assets/bundle.css" />
+              <script type="module" src="/assets/bundle.js" defer></script>`}
       </head>
 
       <body class="layout">
