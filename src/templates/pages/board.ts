@@ -44,7 +44,7 @@ export function boardPage({ path, boards, board, threads }: BoardPageProps) {
             </div>
 
             <div class="thread__content">
-              ${postFiles({ className: 'thread__files', files: thread.files })}
+              ${postFiles({ className: 'thread__files', post: thread, files: thread.files })}
 
               <div class="thread__message">${markup(thread.parsedMessage)}</div>
             </div>
@@ -54,7 +54,9 @@ export function boardPage({ path, boards, board, threads }: BoardPageProps) {
             </div>
           </section>`
         )}
-      </div>`,
+      </div>
+
+      <app-gallery></app-gallery>`,
   });
 }
 

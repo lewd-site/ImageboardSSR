@@ -40,7 +40,7 @@ export function threadPage({ path, boards, board, thread, posts }: ThreadPagePro
             </div>
 
             <div class="post__content">
-              ${postFiles({ className: 'post__files', files: post.files })}
+              ${postFiles({ className: 'post__files', post, files: post.files })}
 
               <div class="post__message">${markup(post.parsedMessage)}</div>
             </div>
@@ -48,7 +48,9 @@ export function threadPage({ path, boards, board, thread, posts }: ThreadPagePro
             <div class="post__footer"></div>
           </section>`
         )}
-      </div>`,
+      </div>
+
+      <app-gallery></app-gallery>`,
   });
 }
 

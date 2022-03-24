@@ -1,9 +1,13 @@
 import { html } from '@popeindustries/lit-html-server';
+import { classMap } from '@popeindustries/lit-html-server/directives/class-map.js';
 import config from '../config';
 import File from '../models/file';
+import Post from '../models/post';
+import Thread from '../models/thread';
 
 interface PostFilesProps {
   readonly className?: string;
+  readonly post: Post | Thread;
   readonly files: File[];
 }
 
@@ -58,11 +62,9 @@ function formatDuration(seconds: number): string {
   return `${mm}:${ss}`;
 }
 
-export function postFiles(props: PostFilesProps) {
-  const className = [props.className, 'post-files'].filter((c) => c).join(' ');
-
-  return html`<ul class="${className}">
-    ${props.files.map((file) => {
+export function postFiles({ className, post, files }: PostFilesProps) {
+  return html`<ul class=${classMap({ 'post-files': true, [className!]: typeof className !== 'undefined' })}>
+    ${files.map((file, index) => {
       const fileType = file.type.split('/').shift() || 'image';
 
       const fallbackExtension = TRANSPARENT.includes(file.extension) ? 'png' : 'jpg';
@@ -86,7 +88,15 @@ export function postFiles(props: PostFilesProps) {
           <div class="post-file__dimensions">${formatFileDimensions(file)}</div>
         </div>
 
-        <a class="post-file__link" href="${originalUrl}" target="_blank">
+        <a
+          class="post-file__link"
+          href="${originalUrl}"
+          target="_blank"
+          data-gallery=${JSON.stringify({
+            id: `${post.id}-${index}`,
+            original: { url: originalUrl, type: file.type, width: file.width || 800, height: file.height || 44 },
+          })}
+        >
           <picture class="post-file__picture">
             <source srcset="${thumbnailUrl}" type="image/webp" />
             <source srcset="${thumbnailFallbackUrl}" type="${fallbackMimeType}" />
