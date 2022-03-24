@@ -36,8 +36,8 @@ export function createApp() {
           frameAncestors: ["'self'"],
           imgSrc: ["'self'", 'data:'],
           objectSrc: ["'none'"],
-          scriptSrc: ["'self'"],
-          styleSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-inline'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
         },
       })
     );
