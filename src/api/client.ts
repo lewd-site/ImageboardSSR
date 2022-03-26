@@ -1,18 +1,15 @@
 import fetch from 'node-fetch-commonjs';
 import config from '../config';
 import { ApiError } from '../errors';
-import { Board } from '../models/board';
-import Post from '../models/post';
-import Thread from '../models/thread';
+import Board, { BoardDto } from '../models/board';
+import Post, { PostDto } from '../models/post';
+import Thread, { ThreadDto } from '../models/thread';
 import {
-  BoardDto,
   convertBoardDtoToModel,
   convertPostDtoToModel,
   convertThreadDtoToModel,
   ItemResponse,
   ListResponse,
-  PostDto,
-  ThreadDto,
 } from './types';
 
 export class ApiClient {

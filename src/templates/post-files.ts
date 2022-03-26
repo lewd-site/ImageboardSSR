@@ -1,5 +1,4 @@
 import { html } from '@popeindustries/lit-html-server';
-import { classMap } from '@popeindustries/lit-html-server/directives/class-map.js';
 import config from '../config';
 import File from '../models/file';
 import Post from '../models/post';
@@ -63,7 +62,9 @@ function formatDuration(seconds: number): string {
 }
 
 export function postFiles({ className, post, files }: PostFilesProps) {
-  return html`<ul class=${classMap({ 'post-files': true, [className!]: typeof className !== 'undefined' })}>
+  className = [className, 'post-files'].filter((c) => typeof c !== 'undefined').join(' ');
+
+  return html`<ul class=${className}>
     ${files.map((file, index) => {
       const fileType = file.type.split('/').shift() || 'image';
 

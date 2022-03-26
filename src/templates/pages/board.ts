@@ -1,4 +1,5 @@
 import { html } from '@popeindustries/lit-html-server';
+import { unsafeHTML } from '@popeindustries/lit-html-server/directives/unsafe-html.js';
 import Board from '../../models/board';
 import Thread from '../../models/thread';
 import layout from '../layout';
@@ -56,7 +57,17 @@ export function boardPage({ path, boards, board, threads }: BoardPageProps) {
         )}
       </div>
 
-      <app-gallery></app-gallery>`,
+      <app-gallery id="gallery"></app-gallery>
+
+      <script>
+        window.ssr = ${unsafeHTML(
+          JSON.stringify({
+            boards: boards.map((board) => board.getData()),
+            board: board.getData(),
+            threads: threads.map((thread) => thread.getData()),
+          })
+        )};
+      </script>`,
   });
 }
 

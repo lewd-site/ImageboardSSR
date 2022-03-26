@@ -1,4 +1,5 @@
 import { html } from '@popeindustries/lit-html-server';
+import { unsafeHTML } from '@popeindustries/lit-html-server/directives/unsafe-html.js';
 import config from '../../config';
 import Board from '../../models/board';
 import layout from '../layout';
@@ -39,7 +40,15 @@ export function indexPage({ path, boards }: IndexPageProps) {
             )}
           </tbody>
         </table>
-      </div>`,
+      </div>
+
+      <script>
+        window.ssr = ${unsafeHTML(
+          JSON.stringify({
+            boards: boards.map((board) => board.getData()),
+          })
+        )};
+      </script>`,
   });
 }
 
