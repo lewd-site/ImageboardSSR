@@ -11,6 +11,18 @@ interface ThreadProps {
 
 const DEFAULT_NAME = 'Anonymous';
 
+function formatName(thread: Thread): string {
+  if (thread.name !== null && thread.name.length) {
+    return thread.name;
+  }
+
+  if (thread.tripcode !== null && thread.tripcode.length) {
+    return '';
+  }
+
+  return DEFAULT_NAME;
+}
+
 export function thread({ className, thread }: ThreadProps) {
   className = [
     className,
@@ -31,7 +43,7 @@ export function thread({ className, thread }: ThreadProps) {
       <span class="thread__subject">${thread.subject || ''}</span>
 
       <span class="thread__author">
-        <span class="thread__name">${thread.name || DEFAULT_NAME}</span>
+        <span class="thread__name">${formatName(thread)}</span>
         <span class="thread__tripcode">${thread.tripcode || ''}</span>
       </span>
 
