@@ -8,6 +8,7 @@
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@popeindustries/lit-html-server": "^4.0.1",
+    "dayjs": "^1.11.0",
     "dotenv": "^16.0.0",
     "koa": "^2.13.4",
     "koa-conditional-get": "^3.0.0",

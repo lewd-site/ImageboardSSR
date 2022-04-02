@@ -62,6 +62,10 @@ function formatDuration(seconds: number): string {
 }
 
 export function postFiles({ className, post, files }: PostFilesProps) {
+  if (!files.length) {
+    return undefined;
+  }
+
   className = [className, 'post-files'].filter((c) => typeof c !== 'undefined').join(' ');
 
   return html`<ul class=${className}>

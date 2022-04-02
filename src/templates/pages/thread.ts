@@ -4,7 +4,8 @@ import Board from '../../models/board';
 import Post from '../../models/post';
 import Thread from '../../models/thread';
 import layout from '../layout';
-import { post } from '../post';
+import post from '../post';
+import postForm from '../post-form';
 
 interface ThreadPageProps {
   readonly path: string;
@@ -23,11 +24,17 @@ export function threadPage({ path, boards, board, thread, posts }: ThreadPagePro
     boards,
     content: html`<h1 class="layout__title">${title}</h1>
 
-      <div id="post-list" class="thread-page">
-        ${posts.map((p) => post({ className: 'thread-page__post', post: p }))}
+      <div class="layout__thread-page thread-page">
+        <div id="post-list" class="thread-page__post-list">
+          ${posts.map((p) => post({ className: 'thread-page__post', post: p }))}
+        </div>
+
+        <h2 class="thread-page__title">Ответить в тред</h2>
+
+        ${postForm({ className: 'thread-page__post-form', slug: board.slug, threadId: thread.id })}
       </div>
 
-      <app-gallery id="gallery"></app-gallery>
+      <app-gallery id="gallery" class="layout__gallery"></app-gallery>
 
       <script>
         window.ssr = ${unsafeHTML(

@@ -18,7 +18,7 @@ export function indexPage({ path, boards }: IndexPageProps) {
     boards,
     content: html`<h1 class="layout__title">${title}</h1>
 
-      <div class="index-page">
+      <div class="layout__index-page index-page">
         <h2 class="index-page__title">Список досок</h2>
 
         <table class="index-page__table table">
