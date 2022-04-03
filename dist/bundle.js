@@ -21,7 +21,25 @@
       </head>
 
       <body class="layout">
-        ${(0,n.default)({className:"layout__sidebar",path:a,boards:t})}
+        <header class="layout__header header">
+          <div class="header__inner">
+            <div class="header__left">
+              <button type="button" id="header-menu" class="header__menu">
+                <span class="icon icon_menu-mask"></span>
+              </button>
+            </div>
+
+            <div class="header__main"></div>
+
+            <div class="header__right">
+              <button type="button" id="header-settings" class="header__settings">
+                <span class="icon icon_settings-mask"></span>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        ${(0,n.default)({className:"layout__sidebar layout__sidebar_hidden",path:a,boards:t})}
 
         <main class="layout__content">${i}</main>
       </body>
@@ -149,7 +167,7 @@
     </div>
 
     <div class="post__footer"></div>
-  </section>`}a.post=c,a.default=c},715:function(e,a,t){"use strict";var i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(a,"__esModule",{value:!0}),a.sidebar=void 0;const o=t(632),n=i(t(8913));function s({className:e,path:a,boards:t}){return e=[e,"sidebar"].filter((e=>e)).join(" "),o.html`<aside class=${e}>
+  </section>`}a.post=c,a.default=c},715:function(e,a,t){"use strict";var i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(a,"__esModule",{value:!0}),a.sidebar=void 0;const o=t(632),n=i(t(8913));function s({className:e,path:a,boards:t}){return e=[e,"sidebar"].filter((e=>e)).join(" "),o.html`<aside id="sidebar" class=${e}>
     <nav class="sidebar__inner">
       <a class="sidebar__title" href="/">
         <span class="icon icon_logo"></span>

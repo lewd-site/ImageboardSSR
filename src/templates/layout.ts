@@ -35,7 +35,25 @@ export function layout({ title, path, boards, content }: LayoutProps) {
       </head>
 
       <body class="layout">
-        ${sidebar({ className: 'layout__sidebar', path, boards })}
+        <header class="layout__header header">
+          <div class="header__inner">
+            <div class="header__left">
+              <button type="button" id="header-menu" class="header__menu">
+                <span class="icon icon_menu-mask"></span>
+              </button>
+            </div>
+
+            <div class="header__main"></div>
+
+            <div class="header__right">
+              <button type="button" id="header-settings" class="header__settings">
+                <span class="icon icon_settings-mask"></span>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        ${sidebar({ className: 'layout__sidebar layout__sidebar_hidden', path, boards })}
 
         <main class="layout__content">${content}</main>
       </body>

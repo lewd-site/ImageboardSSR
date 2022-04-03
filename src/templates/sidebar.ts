@@ -11,7 +11,7 @@ interface SidebarProps {
 export function sidebar({ className, path, boards }: SidebarProps) {
   className = [className, 'sidebar'].filter((c) => c).join(' ');
 
-  return html`<aside class=${className}>
+  return html`<aside id="sidebar" class=${className}>
     <nav class="sidebar__inner">
       <a class="sidebar__title" href="/">
         <span class="icon icon_logo"></span>
