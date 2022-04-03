@@ -31,7 +31,7 @@ export function sidebar({ className, path, boards }: SidebarProps) {
               href=${`/${board.slug}/`}
             >
               <span class="icon icon_discussion-mask"></span>
-              ${board.title}
+              <span class="sidebar__text">${board.title}</span>
             </a>
           </li>`
         )}

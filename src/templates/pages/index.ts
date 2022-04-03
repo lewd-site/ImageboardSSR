@@ -33,9 +33,9 @@ export function indexPage({ path, boards }: IndexPageProps) {
           <tbody class="table__body">
             ${boards.map(
               (board) => html`<tr class="table__row">
-                <th scope="row" class="table__cell"><a href="/${board.slug}/">/${board.slug}/</a></th>
-                <td class="table__cell">${board.title}</td>
-                <td class="table__cell">${board.postCount}</td>
+                <th scope="row" class="table__cell table__cell_left"><a href="/${board.slug}/">/${board.slug}/</a></th>
+                <td class="table__cell table__cell_left">${board.title}</td>
+                <td class="table__cell table__cell_right">${board.postCount}</td>
               </tr>`
             )}
           </tbody>
