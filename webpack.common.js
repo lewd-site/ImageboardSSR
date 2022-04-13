@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -33,5 +32,5 @@ module.exports = {
     '@popeindustries/lit-html-server': 'commonjs @popeindustries/lit-html-server',
     'node-fetch-commonjs': 'commonjs node-fetch-commonjs',
   },
-  plugins: [new webpack.ProgressPlugin()],
+  plugins: [],
 };
