@@ -148,6 +148,8 @@
         <button type="submit" class="post-form__submit">Отправить</button>
       </div>
 
+      <div id="post-form-markup"></div>
+
       <div class="post-form__row">
         <textarea class="post-form__message" name="message" placeholder="Сообщение" maxlength="8000"></textarea>
       </div>
@@ -208,6 +210,8 @@
       <div class="post-form__row">
         <input class="post-form__name" name="name" placeholder="Имя" maxlength="40" value="" />
       </div>
+
+      <div id="post-form-markup"></div>
 
       <div class="post-form__row">
         <textarea class="post-form__message" name="message" placeholder="Сообщение" maxlength="8000"></textarea>
