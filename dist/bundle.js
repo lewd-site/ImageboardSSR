@@ -48,9 +48,7 @@
     </html>`}a.layout=s,a.default=s},7377:(e,a,t)=>{"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.markup=void 0;const i=t(632);function o(e){switch(e.type){case"text":return e.text;case"newline":return i.html`<br />`;case"link":return i.html`<a href="${e.url}" target="_blank" rel="ugc">${e.text}</a>`;case"reflink":return i.html`<a class="reflink" href="#post_${e.postID}" rel="ugc">${e.postID}</a>`;case"style":const a=n(e.children);switch(e.style){case"bold":return i.html`<strong>${a}</strong>`;case"italic":return i.html`<em>${a}</em>`;case"underline":return i.html`<span class="underline">${a}</span>`;case"strike":return i.html`<del>${a}</del>`;case"superscript":return i.html`<sup>${a}</sup>`;case"subscript":return i.html`<sub>${a}</sub>`;case"spoiler":return i.html`<span class="spoiler">${a}</span>`;case"code":return i.html`<code>${a}</code>`;case"size":return i.html`<span style="${`font-size: ${e.value}px;`}">${a}</span>`;case"color":return i.html`<span style="${`color: ${e.value};`}">${a}</span>`;case"quote":return i.html`<span class="quote">${a}</span>`;default:return i.html`${a}`}default:return}}function n(e){return e.map(o)}a.markup=n,a.default=n},5704:function(e,a,t){"use strict";var i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(a,"__esModule",{value:!0}),a.boardPage=void 0;const o=t(632),n=t(3642),s=i(t(4298)),r=i(t(6204)),c=i(t(2537));function p({path:e,boards:a,board:t,threads:i}){const p=`/${t.slug}/ — ${t.title}`;return(0,s.default)({path:e,title:p,boards:a,content:o.html`<h1 class="layout__title">${p}</h1>
 
       <div class="layout__board-page board-page">
-        <h2 class="board-page__title">Создать тред</h2>
-
-        ${(0,r.default)({className:"board-page__post-form",slug:t.slug})}
+        ${(0,r.default)({className:"board-page__post-form",title:"Создать тред",slug:t.slug})}
         ${i.length?o.html`<h2 class="board-page__title">Список тредов</h2>
 
               <div id="thread-list" class="board-page__thread-list">
@@ -95,9 +93,9 @@
           ${p.map((e=>(0,r.default)({className:"thread-page__post",post:e})))}
         </div>
 
-        <h2 class="thread-page__title">Ответить в тред</h2>
+        ${(0,c.default)({className:"thread-page__post-form",title:"Ответить в тред",slug:t.slug,threadId:i.id})}
 
-        ${(0,c.default)({className:"thread-page__post-form",slug:t.slug,threadId:i.id})}
+        <div id="post-form-placeholder"></div>
       </div>
 
       <app-gallery id="gallery" class="layout__gallery"></app-gallery>
@@ -135,8 +133,16 @@
           </picture>
         </a>
       </li>`}))}
-  </ul>`}a.postFiles=p,a.default=p},5924:function(e,a,t){"use strict";var i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(a,"__esModule",{value:!0}),a.postForm=void 0;const o=t(632),n=i(t(8913));function s({className:e,slug:a,threadId:t}){e=[e,"post-form"].filter((e=>void 0!==e)).join(" ");const i=`${n.default.frontend.host}/${a}/res/${t}`,s=`${n.default.api.host}/api/v1/boards/${a}/threads/${t}/posts?redirect=${encodeURIComponent(i)}`;return o.html` <div class=${e}>
-    <form id="post-form" class="post-form__inner" method="post" action=${s} enctype="multipart/form-data">
+  </ul>`}a.postFiles=p,a.default=p},5924:function(e,a,t){"use strict";var i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(a,"__esModule",{value:!0}),a.postForm=void 0;const o=t(632),n=i(t(8913));function s({className:e,title:a,slug:t,threadId:i}){e=[e,"post-form"].filter((e=>void 0!==e)).join(" ");const s=`${n.default.frontend.host}/${t}/res/${i}`,r=`${n.default.api.host}/api/v1/boards/${t}/threads/${i}/posts?redirect=${encodeURIComponent(s)}`;return o.html` <div class=${e}>
+    <div class="post-form__header">
+      <h2 class="post-form__title">${a}</h2>
+
+      <button type="button" id="post-form-close" class="post-form__close">
+        <span class="icon icon_close-mask"></span>
+      </button>
+    </div>
+
+    <form id="post-form" class="post-form__inner" method="post" action=${r} enctype="multipart/form-data">
       <div class="post-form__row">
         <input class="post-form__name" name="name" placeholder="Имя" maxlength="40" value="" />
         <button type="submit" class="post-form__submit">Отправить</button>
@@ -188,8 +194,12 @@
           </li>`))}
       </ul>
     </nav>
-  </aside>`}a.sidebar=s,a.default=s},6204:function(e,a,t){"use strict";var i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(a,"__esModule",{value:!0}),a.threadForm=void 0;const o=t(632),n=i(t(8913));function s({className:e,slug:a}){e=[e,"post-form"].filter((e=>void 0!==e)).join(" ");const t=`${n.default.frontend.host}/${a}`,i=`${n.default.api.host}/api/v1/boards/${a}/threads?redirect=${encodeURIComponent(t)}`;return o.html` <div class=${e}>
-    <form id="post-form" class="post-form__inner" method="post" action=${i} enctype="multipart/form-data">
+  </aside>`}a.sidebar=s,a.default=s},6204:function(e,a,t){"use strict";var i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(a,"__esModule",{value:!0}),a.threadForm=void 0;const o=t(632),n=i(t(8913));function s({className:e,title:a,slug:t}){e=[e,"post-form"].filter((e=>void 0!==e)).join(" ");const i=`${n.default.frontend.host}/${t}`,s=`${n.default.api.host}/api/v1/boards/${t}/threads?redirect=${encodeURIComponent(i)}`;return o.html` <div class=${e}>
+    <div class="post-form__header">
+      <h2 class="post-form__title">${a}</h2>
+    </div>
+
+    <form id="post-form" class="post-form__inner" method="post" action=${s} enctype="multipart/form-data">
       <div class="post-form__row">
         <input class="post-form__subject" name="subject" placeholder="Тема" maxlength="40" value="" />
         <button type="submit" class="post-form__submit">Отправить</button>

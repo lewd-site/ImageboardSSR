@@ -3,11 +3,12 @@ import config from '../config';
 
 interface PostFormProps {
   readonly className?: string;
+  readonly title?: string;
   readonly slug: string;
   readonly threadId: number;
 }
 
-export function postForm({ className, slug, threadId }: PostFormProps) {
+export function postForm({ className, title, slug, threadId }: PostFormProps) {
   className = [className, 'post-form'].filter((c) => typeof c !== 'undefined').join(' ');
 
   const redirectUri = `${config.frontend.host}/${slug}/res/${threadId}`;
@@ -16,6 +17,14 @@ export function postForm({ className, slug, threadId }: PostFormProps) {
   )}`;
 
   return html` <div class=${className}>
+    <div class="post-form__header">
+      <h2 class="post-form__title">${title}</h2>
+
+      <button type="button" id="post-form-close" class="post-form__close">
+        <span class="icon icon_close-mask"></span>
+      </button>
+    </div>
+
     <form id="post-form" class="post-form__inner" method="post" action=${url} enctype="multipart/form-data">
       <div class="post-form__row">
         <input class="post-form__name" name="name" placeholder="Имя" maxlength="40" value="" />

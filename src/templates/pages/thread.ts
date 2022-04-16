@@ -29,9 +29,14 @@ export function threadPage({ path, boards, board, thread, posts }: ThreadPagePro
           ${posts.map((p) => post({ className: 'thread-page__post', post: p }))}
         </div>
 
-        <h2 class="thread-page__title">Ответить в тред</h2>
+        ${postForm({
+          className: 'thread-page__post-form',
+          title: 'Ответить в тред',
+          slug: board.slug,
+          threadId: thread.id,
+        })}
 
-        ${postForm({ className: 'thread-page__post-form', slug: board.slug, threadId: thread.id })}
+        <div id="post-form-placeholder"></div>
       </div>
 
       <app-gallery id="gallery" class="layout__gallery"></app-gallery>

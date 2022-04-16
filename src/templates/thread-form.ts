@@ -3,16 +3,21 @@ import config from '../config';
 
 interface PostFormProps {
   readonly className?: string;
+  readonly title?: string;
   readonly slug: string;
 }
 
-export function threadForm({ className, slug }: PostFormProps) {
+export function threadForm({ className, title, slug }: PostFormProps) {
   className = [className, 'post-form'].filter((c) => typeof c !== 'undefined').join(' ');
 
   const redirectUri = `${config.frontend.host}/${slug}`;
   const url = `${config.api.host}/api/v1/boards/${slug}/threads?redirect=${encodeURIComponent(redirectUri)}`;
 
   return html` <div class=${className}>
+    <div class="post-form__header">
+      <h2 class="post-form__title">${title}</h2>
+    </div>
+
     <form id="post-form" class="post-form__inner" method="post" action=${url} enctype="multipart/form-data">
       <div class="post-form__row">
         <input class="post-form__subject" name="subject" placeholder="Тема" maxlength="40" value="" />

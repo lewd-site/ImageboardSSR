@@ -23,9 +23,7 @@ export function boardPage({ path, boards, board, threads }: BoardPageProps) {
     content: html`<h1 class="layout__title">${title}</h1>
 
       <div class="layout__board-page board-page">
-        <h2 class="board-page__title">Создать тред</h2>
-
-        ${threadForm({ className: 'board-page__post-form', slug: board.slug })}
+        ${threadForm({ className: 'board-page__post-form', title: 'Создать тред', slug: board.slug })}
         ${threads.length
           ? html`<h2 class="board-page__title">Список тредов</h2>
 
