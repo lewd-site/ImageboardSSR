@@ -42,6 +42,7 @@
         ${(0,n.default)({className:"layout__sidebar layout__sidebar_hidden",path:a,boards:t})}
 
         <div id="notifications" class="layout__notifications notifications"></div>
+        <div id="settings" class="layout__settings settings"></div>
 
         <main class="layout__content">${i}</main>
       </body>

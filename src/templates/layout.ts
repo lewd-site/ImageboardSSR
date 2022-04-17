@@ -56,6 +56,7 @@ export function layout({ title, path, boards, content }: LayoutProps) {
         ${sidebar({ className: 'layout__sidebar layout__sidebar_hidden', path, boards })}
 
         <div id="notifications" class="layout__notifications notifications"></div>
+        <div id="settings" class="layout__settings settings"></div>
 
         <main class="layout__content">${content}</main>
       </body>
